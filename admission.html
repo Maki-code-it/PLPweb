@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLP Web Portal - Admission</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+          .logo {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+      .header-text h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+    white-space: nowrap;
+}
+
+        nav {
+            background: #1b5e20;
+            padding: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: #2e7d32;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h2 {
+            color: #1b5e20;
+            margin-bottom: 30px;
+            font-size: 32px;
+            border-bottom: 3px solid #2e7d32;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #1b5e20;
+            margin-bottom: 20px;
+            font-size: 24px;
+            margin-top: 40px;
+        }
+
+        h3:first-of-type {
+            margin-top: 0;
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .requirement-card {
+            background: #f1f8e9;
+            border: 2px solid #c5e1a5;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .requirement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(46, 125, 50, 0.3);
+        }
+
+        .requirement-image {
+            width: 100%;
+            height: 250px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1b5e20;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 14px;
+            padding: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .requirement-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .requirement-image::after {
+            content: '🔍 Click to view full image';
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(46, 125, 50, 0.9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .requirement-card:hover .requirement-image::after {
+            opacity: 1;
+        }
+
+        .requirement-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1b5e20;
+            margin-bottom: 10px;
+        }
+
+        .requirement-desc {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .downloads-section {
+            background: #f1f8e9;
+            border: 2px solid #c5e1a5;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            color: white;
+            padding: 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
+        }
+
+        .download-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .schedule-section {
+            background: #e8f5e9;
+            border: 2px solid #a5d6a7;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .datepicker-wrapper {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .datepicker-container {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .datepicker-info {
+            flex: 2;
+            min-width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #c5e1a5;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #1b5e20;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        #admission-date {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #c5e1a5;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .info-box {
+            background: #f1f8e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            border-left: 4px solid #2e7d32;
+        }
+
+        .info-box h4 {
+            color: #1b5e20;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .info-box p {
+            margin-bottom: 8px;
+            color: #424242;
+            font-size: 14px;
+        }
+
+        footer {
+            background: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+        }
+
+        .ui-dialog {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .ui-dialog-titlebar {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+        }
+
+        .ui-dialog-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .ui-dialog-titlebar-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 3px;
+        }
+
+        .ui-dialog-titlebar-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .ui-dialog-content {
+            padding: 25px !important;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .dialog-content {
+            text-align: center;
+        }
+
+        .dialog-content h3 {
+            color: #1b5e20;
+            margin-bottom: 15px;
+            margin-top: 0;
+        }
+
+        .dialog-content p {
+            margin-bottom: 12px;
+            color: #424242;
+        }
+
+        .dialog-content .important {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #ff9800;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        /* Image Preview Dialog Styles */
+        #image-dialog {
+            padding: 0 !important;
+        }
+
+        #image-dialog .ui-dialog-content {
+            padding: 0 !important;
+            overflow: hidden !important;
+        }
+
+        .image-preview {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            display: block;
+        }
+
+        .ui-dialog.image-dialog-container {
+            max-width: 90vw !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+           <div class="logo"><img src="plplogo.png" alt="PLP Logo"></div>
+            <div class="header-text">
+                <h1>PAMANTASAN NG LUNGSOD NG PASIG</h1>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#" class="active">Admission</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>Admission Information</h2>
+
+        <h3>Admission Requirements</h3>
+        <div class="requirements-grid">
+            <div class="requirement-card" data-image="qualifications.png" data-title="QUALIFICATIONS">
+                <div class="requirement-image"><img src="qualifications.png" alt="Requirement Image"></div>
+                <div class="requirement-title">QUALIFICATIONS</div>
+                <div class="requirement-desc">QUALIFICATIONS FOR ADMISSION</div>
+            </div>
+
+            <div class="requirement-card" data-image="docureqs.png" data-title="DOCUMENTARY REQUIREMENTS">
+                <div class="requirement-image"><img src="docureqs.png" alt="Requirement Image 2"></div>
+                <div class="requirement-title">DOCUMENTARY REQUIREMENTS</div>
+                <div class="requirement-desc">DOCUMENTARY REQUIREMENTS FOR ADMISSION</div>
+            </div>
+
+            <div class="requirement-card" data-image="transferee.png" data-title="FOR TRANSFEREES">
+                <div class="requirement-image"><img src="transferee.png" alt="Requirement Image 3"></div>
+                <div class="requirement-title">FOR TRANSFEREES</div>
+                <div class="requirement-desc">FOR TRANSFERING IN PAMANTASAN NG LUNGSOD NG PASIG</div>
+            </div>
+
+            <div class="requirement-card" data-image="programstrand.png" data-title="STRAND REQUIREMENTS & PROGRAM OFFERED">
+                <div class="requirement-image"><img src="programstrand.png" alt="Requirement Image 4"></div>
+                <div class="requirement-title">STRAND REQUIREMENTS & PROGRAM OFFERED</div>
+                <div class="requirement-desc">STRAND REQUIREMENTS & PROGRAM OFFERED IN PAMANTASAN NG LUNGSOD NG PASIG</div>
+            </div>
+        </div>
+
+        <div class="downloads-section">
+            <h3 style="margin-top: 0;">Downloadable Forms</h3>
+            <p>Download the necessary forms for your admission application. All forms must be filled out completely and submitted together with the required documents.</p>
+            
+            <div class="download-grid">
+                <button class="download-btn" data-form="Application Form">
+                    <div class="download-icon">📄</div>
+                    <span>ENROLLED LOA FORM</span>
+                </button>
+
+                <button class="download-btn" data-form="Medical Certificate">
+                    <div class="download-icon">📄</div>
+                    <span>NON ENROLLED LOA FORM</span>
+                </button>
+
+                <button class="download-btn" data-form="Scholarship Form">
+                    <div class="download-icon">📄</div>
+                    <span>PERMIT TO CROSS ENROLL</span>
+                </button>
+
+                <button class="download-btn" data-form="Enrollment Checklist">
+                    <div class="download-icon">📄</div>
+                    <span>APPLICATION TO CROSS ENROLL</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="schedule-section">
+            <h3 style="margin-top: 0;">Schedule Your Visit</h3>
+            <p>Select your preferred date to visit our campus or submit your admission requirements. Our admission office is open from Monday to Friday.</p>
+            
+            <div class="datepicker-wrapper">
+                <div class="datepicker-container">
+                    <label for="admission-date">Select Date:</label>
+                    <input type="text" id="admission-date" placeholder="Click to select date" readonly>
+                </div>
+                
+                <div class="datepicker-info">
+                    <h4 style="color: #1b5e20; margin-bottom: 15px;">Important Dates for Academic Year 2024-2025</h4>
+                    
+                    <div class="info-box">
+                        <h4>First Semester</h4>
+                        <p><strong>Application Period:</strong> May 1 - June 30, 2024</p>
+                        <p><strong>Entrance Exam:</strong> July 5-6, 2024</p>
+                        <p><strong>Enrollment Period:</strong> July 15 - August 5, 2024</p>
+                        <p><strong>Classes Start:</strong> August 12, 2024</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>Second Semester</h4>
+                        <p><strong>Application Period:</strong> November 1 - December 15, 2024</p>
+                        <p><strong>Entrance Exam:</strong> December 20-21, 2024</p>
+                        <p><strong>Enrollment Period:</strong> January 6 - January 20, 2025</p>
+                        <p><strong>Classes Start:</strong> January 27, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="image-dialog" style="display: none;">
+        <img id="preview-image" class="image-preview" src="" alt="Full Image">
+    </div>
+
+   
+    <div id="admission-dialog" title="Admission Schedule Announcement" style="display: none;">
+        <div class="dialog-content">
+            <h3>Important Admission Announcement</h3>
+            <p><strong>Academic Year 2024-2025</strong></p>
+            <p>Thank you for your interest in Pamantasan ng Lungsod ng Pasig!</p>
+            
+            <div style="margin: 20px 0;">
+                <p><strong>Next Admission Period:</strong></p>
+                <p style="font-size: 18px; color: #2e7d32; font-weight: 600;">January 6 - January 20, 2025</p>
+            </div>
+
+            <p>The admission office will be open from Monday to Friday, 8:00 AM to 5:00 PM.</p>
+
+            <div class="important">
+                <p><strong>⚠️ Important Reminders:</strong></p>
+                <p>• Bring all required documents (original and photocopies)</p>
+                <p>• Entrance examination is mandatory for all applicants</p>
+                <p>• Slots are limited and will be on a first-come, first-served basis</p>
+                <p>• Only Pasig City residents are eligible for tuition-free education</p>
+            </div>
+
+            <p style="margin-top: 20px;">For more information, please contact our admission office at (02) 8643-1234 or email us at admission@plpasig.edu.ph</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Pamantasan ng Lungsod ng Pasig. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+         
+            $("#admission-date").datepicker({
+                minDate: 0,
+                dateFormat: "MM dd, yy",
+                beforeShowDay: function(date) {
+                    var day = date.getDay();
+                    return [(day != 0 && day != 6)];
+                }
+            });
+
+          
+            $("#admission-dialog").dialog({
+                autoOpen: false,
+                modal: true,
+                width: 600,
+                buttons: {
+                    "Got it!": function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+           
+            $("#image-dialog").dialog({
+                autoOpen: false,
+                modal: true,
+                width: 'auto',
+                maxWidth: 1200,
+                dialogClass: 'image-dialog-container',
+                buttons: {
+                    "Close": function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+           
+            $(".requirement-card").on("click", function() {
+                var imageSrc = $(this).data("image");
+                var imageTitle = $(this).data("title");
+                
+                $("#preview-image").attr("src", imageSrc);
+                $("#image-dialog").dialog("option", "title", imageTitle);
+                $("#image-dialog").dialog("open");
+            });
+
+            
+            $(".download-btn").on("click", function() {
+                var formName = $(this).data("form");
+                $("#admission-dialog").dialog("option", "title", formName + " - Download");
+                $("#admission-dialog").dialog("open");
+            });
+        });
+    </script>
+</body>
+</html>

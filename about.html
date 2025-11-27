@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLP Web Portal - About Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+         .logo {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+      .header-text h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+    white-space: nowrap;
+}
+        nav {
+            background: #1b5e20;
+            padding: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: #2e7d32;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h2 {
+            color: #1b5e20;
+            margin-bottom: 30px;
+            font-size: 32px;
+            border-bottom: 3px solid #2e7d32;
+            padding-bottom: 10px;
+        }
+
+        #info-tabs {
+            margin-top: 30px;
+        }
+
+        .ui-tabs .ui-tabs-nav {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            border: none;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .ui-tabs .ui-tabs-nav li {
+            border: none;
+            background: transparent;
+            margin: 0;
+        }
+
+        .ui-tabs .ui-tabs-nav li a {
+            color: white;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
+            background: #f1f8e9;
+            color: #1b5e20;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .ui-tabs .ui-tabs-panel {
+            background: #f1f8e9;
+            border: 2px solid #c5e1a5;
+            border-top: none;
+            padding: 30px;
+            min-height: 400px;
+        }
+
+        h3 {
+            color: #1b5e20;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        h3:first-child {
+            margin-top: 0;
+        }
+
+        p {
+            text-align: justify;
+            line-height: 1.8;
+            color: #424242;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: #424242;
+        }
+
+        .president-section {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .president-image {
+            flex: 0 0 250px;
+            height: 300px;
+            background: #c8e6c9;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2e7d32;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .president-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .president-message {
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #1b5e20;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #c5e1a5;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2e7d32;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            color: white;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background: #1b5e20;
+            color: #ffffff !important;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        footer p {
+            color: #ffffff !important;
+            margin: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo"><img src="plplogo.png" alt="PLP Logo"></div>
+            <div class="header-text">
+                <h1>PAMANTASAN NG LUNGSOD NG PASIG</h1>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="#" class="active">About Us</a></li>
+            <li><a href="admission.html">Admission</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h2>About Pamantasan ng Lungsod ng Pasig</h2>
+
+        <div id="info-tabs">
+            <ul>
+                <li><a href="#about-tab">About Us</a></li>
+                <li><a href="#president-tab">Message from the President</a></li>
+                <li><a href="#contact-tab">Contact Us</a></li>
+            </ul>
+
+            <div id="about-tab">
+                <h3>Brief History of PLP</h3>
+                <p>On March 15, 1999, the Sangguniang Panlungsod ng Pasig passed Ordinance No. 11, Series of 1999, establishing the Pamantasan ng Lungsod ng Pasig, and appropriated funds for its operations. The authority of the Sangguniang Panlungsod ng Pasig to establish the Pamantasan is Article III, Sections 447, 458, 468 of the Local Government Code of 1991 which allowed institutions to be established and operated by Local Government Units.</p>
+                
+                <p>Since its establishment, PLP has been committed to providing quality education accessible to the residents of Pasig City. The institution has grown from a small community college to a comprehensive university offering various programs across multiple disciplines.</p>
+
+                <h3>Mission</h3>
+                <p>The Pamantasan ng Lungsod ng Pasig is committed to provide quality tertiary education that is accessible and affordable to deserving Pasigueños. Through a responsive, relevant and transformative curriculum, the institution shall produce graduates with sound value system who can lead productive and meaningful lives.</p>
+
+                <h3>Vision</h3>
+                <p>The Pamantasan ng Lungsod ng Pasig envisions itself as a premiere higher education institution in the CALABARZON region, producing socially responsible, globally competitive and service-oriented graduates who are agents of social transformation.</p>
+
+                <h3>Core Values</h3>
+                <ul>
+                    <li><strong>Excellence</strong> - We strive for the highest standards in education and service</li>
+                    <li><strong>Integrity</strong> - We uphold honesty and strong moral principles</li>
+                    <li><strong>Social Responsibility</strong> - We are committed to serving our community</li>
+                    <li><strong>Innovation</strong> - We embrace creativity and progressive thinking</li>
+                    <li><strong>Compassion</strong> - We show empathy and care for all members of our community</li>
+                </ul>
+            </div>
+
+            <div id="president-tab">
+                <div class="president-section">
+                    <div class="president-image"><img src="plppresident.jpg" alt="Dr. Glicerio M. Maningas - President"></div>
+                    <div class="president-message">
+                        <h3>Message from the President</h3>
+                        <p><em>A speech delivered by Dr. Glicerio M. Maningas, President of Pamantasan ng Lungsod ng Pasig during the Joint Graduation Ceremony for the CHED-AIM Global Academic Leadership Program held on November 29, 2023. This program equips Local Universities and Colleges (LUCs) and Local Government Unit (LGU) leaders with transformative skills for high-performing learning institution.</em></p>
+                    </div>
+                </div>
+
+                <p>Ako si Reggie mula sa Pasig pero nandirito po ako ngayon sa inyong harapan bilang si Cohort 4 na Mula sa Luzon, Visayas at Mindanao.</p>
+
+                <p>I am here to tell our story. A story of a group of school leaders who are rooted in the dreams and aspirations of our students from the economically-disadvantaged families, from the marginalized. Our story is about our journey to finding our true North. It is a story of faith and hope that CHED, through Chair Prospero De Vera, has finally seen our value in the Ecosystem. It is a story of inspiration because AIM has made us see and feel our worth as individuals and as leaders of our educational institution. CHED has finally seen that we can be important partners in nation-building but at the same time, CHED knows that we need to be capacitated or further capacitated.</p>
+
+                <p>We all embarked into this CHED-AIM Galp Journey bringing with us our own individual sources of joys and pains. It is our joy to see that despite the many challenges and limitations in the lives of our students, many are succeeding. But it is also our pain that some of them fail giving us the sense that we did not do enough.</p>
+
+                <p>Our students are important to us. They are our reason for being. They are our True North. Their success is our success. Their failure is our failure. For some of us, it is our joy to see that our Local Chief Executives walk the talk of access to quality tertiary education for the poor through their all-out support to the programs, projects and activities of our school. While others are pained that they are not getting enough because of limited resources.</p>
+
+                <p>We all acknowledge the critical role of our Local Chief Executives and all local leaders in determining the direction of our schools towards the fulfilment of the promise of improved quality of life through quality education. For many of us, our Mayors are our inspiration, our source of strength. The welfare of their people is their True North. They invest heavily in the education of our children. Sabi nga ni Mayor Vico: Gastusin ang pera ng bayan sa mamamayan. Kung walang korupsyon, bababa ang buong pwersa ng kaban ng bayan sa mamamayan.</p>
+
+                <p>Ang pangakong pagunlad ng buhay ng mamamayan ang pangako ng Pamahalan, ng mga Pamantasan at Dalubhasaan kung kaya naman ito ang syang kailangang pagsikapan ng lahat na matupad. Maitawid sila sa minimithing maunlad na buhay. Tupadin ang pangako.</p>
+
+                <h3>The Lessons we learned from the journey:</h3>
+
+                <p><strong>One:</strong> Empty your cup. CHED AIM, you taught Cohort 4 to empty our cup, empty our cup of arrogance and filled it with humility that we need the help of others; we need new ways of thinking and doing things; we need new mental models to free us from the silos created by traditional way of leadership and governance.</p>
+
+                <p>We also emptied our cup of tears and doubts and you filled it with faith and hope. That with each other's help and the help of all stakeholders who share the same dreams and aspirations for our students, their families and our community, we can transform our institutions. AIM, you made us see clearly who we are: Community Colleges who are part of a Reform Movement to address social divides. We are community colleges that need to refocus our energy to finding our own unique niche in the community. We are Community Colleges – a Reform Movement addressing Social Divides Guided by the principle of social justice for the common good.</p>
+
+                <p><strong>Two:</strong> CHED AIM Program taught us to enter into a communal dialogue, a communal conversation. Co-sensing, Co-Owning the problem and together co-create solutions for the common good. You taught us that leadership is not about us, but about all of us, about all of us in the entire community because after all we share a common destiny – a shared future.</p>
+
+                <p><strong>Three:</strong> You filled our cup with a mental model. Macli-ing Dulag spoke of arrogance in people saying they own the land when reality is, they are owned by the land. He asked: HOW CAN YOU OWN THAT WHICH WILL OUTLIVE YOU? THE RACE OWNS THE LAND BECAUSE THE RACE LIVES FOREVER. Paano natin aangkinin ang isang bagay na mananatiling buhay pagkatapos nating lumisan mula sa mundong ito?</p>
+
+                <p>We do not own the schools we manage or supervise. We are simply caretakers. Schools were built on the ideals of a community for its people. They were built on the dreams and aspirations of our community – that through access to quality tertiary education, they can better their lives and improve their human condition, that they can live in dignity, free from want or hunger, free from the manipulation of the powerful. Our Schools will remain standing for as long as new human beings are born into this world, into our communities. They belong to a generation that is to come. They belong to your children and their children's children. As such, we need to be good caretakers of the earth. That is why you taught us to work for sustainable development goals.</p>
+
+                <h3>The Challenges Ahead:</h3>
+                <ul>
+                    <li>The challenge of rebranding our institutions symbolizing our attempt to free ourselves from traditional way of thinking to becoming more creative, innovative and responsive to the changing times.</li>
+                    <li>The challenge of providing multiple pathways through sorting not filtering. In filtering you close the door of opportunities for them.</li>
+                    <li>The challenge of developing a strong workforce that will fuel local and national development. The challenge of facilitating not only finding decent jobs but also creating jobs through entrepreneurship.</li>
+                </ul>
+
+                <p>The program is officially ending today in this graduation ceremony. Cohort 4 feels an immense sense of gratitude to the Commission on Higher Education and to the Asian Institute of Management.</p>
+
+                <p>Maraming Salamat. Let us not forget, Boss Gio, Wayne and Eira, and the support of Mam Jojie of the Office of Atty. Milla. Cohort was blessed to have you. Bahagi kayo ng tagumpay na ito.</p>
+
+                <p>CHED and AIM, Maraming maraming Salamat po sa aral at sa inspirasyon.</p>
+
+                <p>As Jennifer Grant puts it as cited by Mr. Mark Yu, Chief Financial Officer of SEAOIL Philippines: "Inspiration drives a person from ambivalence and apathy to possibility and very much transforms the way we perceive our own capabilities. Research shows that inspiration can be activated, captured and controlled and it can have a major effect on important life and business outcomes." End of quote. CHED activated that inspiration in Cohort 4. Our AIM Professors captured it and it is now beginning to have major impact in the life of our institutions.</p>
+
+                <p>Hanggang dito na lamang po ang kwento ng Cohort 4, isang kwento na magpapatuloy sa buhay ng aming mga mag-aaral.</p>
+
+                <p><strong>Mabuhay po kayong lahat na nagsusulong ng pag-unlad ng buhay ng bawat mag-aaral sa pamamagitan ng isang Edukasyon Para sa Sarili, Pamilya at Bayan.</strong></p>
+            </div>
+
+            <div id="contact-tab">
+                <h3>Get in Touch with Us</h3>
+                <p>We would love to hear from you! Please fill out the form below and we will get back to you as soon as possible.</p>
+
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="fullname">Full Name *</label>
+                        <input type="text" id="fullname" name="fullname" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact">Contact Number *</label>
+                        <input type="text" id="contact" name="contact" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message *</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Pamantasan ng Lungsod ng Pasig. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            $("#info-tabs").tabs();
+
+            $("#contact-form").on("submit", function(e) {
+                e.preventDefault();
+                alert("Thank you for contacting us! We will get back to you soon.");
+                this.reset();
+            });
+        });
+    </script>
+</body>
+</html>

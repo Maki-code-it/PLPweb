@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLP Web Portal - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+  .logo {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+      .header-text h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+    white-space: nowrap;
+}
+
+        nav {
+            background: #1b5e20;
+            padding: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: #2e7d32;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .slideshow {
+            width: 100%;
+            height: 500px;
+            background: #e8f5e9;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #2e7d32;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #1b5e20;
+            font-weight: 500;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .slide-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(46, 125, 50, 0.3);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .slide-dot.active {
+            background: #2e7d32;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            color: #1b5e20;
+            margin-bottom: 20px;
+            font-size: 32px;
+            border-bottom: 3px solid #2e7d32;
+            padding-bottom: 10px;
+        }
+
+        #colleges-accordion {
+            margin-top: 30px;
+        }
+
+        .ui-accordion .ui-accordion-header {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+        }
+
+        .ui-accordion .ui-accordion-header:hover {
+            background: linear-gradient(135deg, #388e3c 0%, #43a047 100%);
+        }
+
+        .ui-accordion .ui-accordion-content {
+            padding: 20px;
+            background: #f1f8e9;
+            border: 2px solid #c5e1a5;
+        }
+
+        .about-section {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+       .about-image {
+    flex: 0 0 300px;  
+    height: 200px;     
+    background: #c8e6c9;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2e7d32;
+    font-weight: bold;
+    overflow: hidden;  
+}
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  
+    border-radius: 10px;
+}
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            color: #1b5e20;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .about-text p {
+            text-align: justify;
+            line-height: 1.8;
+            color: #424242;
+        }
+
+        footer {
+            background: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+        }
+
+        .college-content {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+           .college-image {
+            width: 160px;
+            height: 200px;
+            background: #a5d6a7;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1b5e20;
+            font-size: 14px;
+            text-align: center;
+            padding: 15px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .college-image img {
+            width: 220px;
+            height: 220px;
+            object-fit: contain;
+        }
+        .college-description {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo"><img src="plplogo.png" alt="PLP Logo"></div>
+            <div class="header-text">
+                <h1>PAMANTASAN NG LUNGSOD NG PASIG</h1>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="admission.html">Admission</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="slideshow">
+            <div class="slide active"><img src="home1.jpg" alt="Campus Image 1"></div>
+            <div class="slide"><img src="home2.jpg" alt="Campus Image 2"></div>
+            <div class="slide"><img src="home3.jpg" alt="Campus Image 3"></div>
+            <div class="slide"><img src="home4.jpg" alt="Campus Image 4"></div>
+            <div class="slide"><img src="home5.jpg" alt="Campus Image 5"></div>
+            <div class="slide-nav">
+                <span class="slide-dot active" data-slide="0"></span>
+                <span class="slide-dot" data-slide="1"></span>
+                <span class="slide-dot" data-slide="2"></span>
+                <span class="slide-dot" data-slide="3"></span>
+                <span class="slide-dot" data-slide="4"></span>
+            </div>
+        </div>
+
+        <section>
+            <h2>Our Colleges</h2>
+            <div id="colleges-accordion">
+                <h3>College of Engineering</h3>
+                <div>
+                    <div class="college-content">
+                    <div class="college-image"><img src="engineering.png" alt="College Image"></div>
+                        <div class="college-description">
+                            <p>The College of Engineering at PLP offers innovative programs designed to develop skilled engineers ready to meet the challenges of modern industry. Our state-of-the-art facilities and experienced faculty ensure students receive quality education in various engineering disciplines.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>College of Computer Studies</h3>
+                <div>
+                    <div class="college-content">
+                     <div class="college-image"><img src="compsci.png" alt="College Image 2"></div>
+                        <div class="college-description">
+                            <p>Focusing on cutting-edge technology and computer science principles, the College of Computer Studies prepares students for careers in software development, IT management, data science, and emerging tech fields. We emphasize both theoretical knowledge and practical skills.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>College of Hospitality Management</h3>
+                <div>
+                    <div class="college-content">
+                       <div class="college-image"><img src="cihm.png" alt="College Image 3"></div>
+                        <div class="college-description">
+                            <p>Our College of Hospitality Management trains future leaders in the tourism, hotel, and food service industries. Students gain hands-on experience through partnerships with leading hospitality establishments and learn international standards of service excellence.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>College of Arts and Science</h3>
+                <div>
+                    <div class="college-content">
+                        <div class="college-image"><img src="artsandscience.png" alt="College Image 4"></div>
+                        <div class="college-description">
+                            <p>The College of Arts and Science provides a well-rounded liberal education, offering programs in humanities, social sciences, and natural sciences. We cultivate critical thinking, creativity, and analytical skills essential for various professional paths.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>College of Education</h3>
+                <div>
+                    <div class="college-content">
+                      <div class="college-image"><img src="education.png" alt="College Image 5"></div>
+                        <div class="college-description">
+                            <p>Dedicated to shaping future educators, the College of Education combines pedagogical theory with classroom practice. Our graduates become passionate teachers committed to transforming lives through quality education in elementary, secondary, and special education settings.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>College of Business & Accountancy</h3>
+                <div>
+                    <div class="college-content">
+                     <div class="college-image"><img src="accountancy.png" alt="College Image 6"></div>
+                        <div class="college-description">
+                            <p>The College of Business & Accountancy develops ethical business leaders and skilled accountants. Our curriculum covers management, entrepreneurship, finance, and accounting, preparing students for success in the dynamic world of business and commerce.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>College of Nursing</h3>
+                <div>
+                    <div class="college-content">
+                    <div class="college-image"><img src="nursing.png" alt="College Image 7"></div>
+                        <div class="college-description">
+                            <p>The College of Nursing produces compassionate and competent healthcare professionals. Through rigorous academic training and clinical exposure, our nursing students learn to provide quality patient care and contribute meaningfully to the healthcare system.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>About PLP</h2>
+            <div class="about-section">
+                <div class="about-image"><img src="plpbuilding.jpg" alt="Building Image 2"></div>
+                <div class="about-text">
+                    <h3>About PLP</h3>
+                    <p>On March 15, 1999, the Sangguniang Panlungsod ng Pasig passed Ordinance No. 11, Series of 1999, establishing the Pamantasan ng Lungsod ng Pasig, and appropriated funds for its operations. The authority of the Sangguniang Panlungsod ng Pasig to establish the Pamantasan is Article III, Sections 447, 458, 468 of the Local Government Code of 1991 which allowed institutions to be established and operated by Local Government Units.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Pamantasan ng Lungsod ng Pasig. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        $(document).ready(function() {
+            $("#colleges-accordion").accordion({
+                collapsible: true,
+                heightStyle: "content",
+                active: false
+            });
+
+            let currentSlide = 0;
+            const slides = $('.slide');
+            const dots = $('.slide-dot');
+            const totalSlides = slides.length;
+
+            function showSlide(index) {
+                slides.removeClass('active');
+                dots.removeClass('active');
+                $(slides[index]).addClass('active');
+                $(dots[index]).addClass('active');
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                showSlide(currentSlide);
+            }
+
+            setInterval(nextSlide, 3000);
+
+            dots.on('click', function() {
+                currentSlide = $(this).data('slide');
+                showSlide(currentSlide);
+            });
+        });
+    </script>
+</body>
+</html>
